@@ -14,7 +14,7 @@
     <form class="mb-5">
       <div class="form-group">
         <label for="username-inpu">Username</label>
-        <input type="text" class="form-control" id="username-input" />
+        <input v-model: type="text" class="form-control" id="username-input" />
 
         <label for="password-input">Password</label>
         <input type="password" class="form-control" id="password-input" />
@@ -34,7 +34,8 @@
       data() {
         return {
           message: 'Welcome to the Dog Walking Service!',
-          username
+          username: '',
+          password: '',
         };
       }
     }).mount('#app');
