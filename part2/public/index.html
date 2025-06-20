@@ -89,8 +89,8 @@
               dogs.value.map(async (x) => {
                 let ph_res = await fetch('https://dog.ceo/api/breeds/image/random')
                 let photo_obj = await ph_res.json();
-                x.photo_url = photo_obj.
-              })
+                x.photo_url = photo_obj.message;
+              });
             });
         }
 
