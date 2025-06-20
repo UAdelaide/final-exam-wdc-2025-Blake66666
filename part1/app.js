@@ -39,19 +39,19 @@ let db;
       ('davidwalker', 'david@example.com', 'hashedabc', 'walker'),
       ('emmaowner', 'emma@example.com', 'hasheddef', 'owner');
       INSERT INTO Dogs (owner_id, name, size) VALUES
-((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
-((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small'),
-((SELECT user_id FROM Users WHERE username = 'alice123'), 'Rocky', 'large'),
-((SELECT user_id FROM Users WHERE username = 'emmaowner'), 'Lucy', 'small'),
-((SELECT user_id FROM Users WHERE username = 'carol123'), 'Charlie', 'medium');
-INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
-(
-(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Max' AND u.username = 'alice123'),
-'2025-06-10 08:00:00',
-30,
-'Parklands',
-'open'
-),
+      ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
+      ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small'),
+      ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Rocky', 'large'),
+      ((SELECT user_id FROM Users WHERE username = 'emmaowner'), 'Lucy', 'small'),
+      ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Charlie', 'medium');
+      INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
+      (
+      (SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Max' AND u.username = 'alice123'),
+      '2025-06-10 08:00:00',
+      30,
+      'Parklands',
+      'open'
+      ),
 (
 (SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Bella' AND u.username = 'carol123'),
 '2025-06-10 09:30:00',
