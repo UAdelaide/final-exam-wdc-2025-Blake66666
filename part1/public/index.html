@@ -1,12 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>dog walking service</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Walking</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #FFFF00;
+
+            color: #FFFFFF;
+
+        }
+
+        #app {
+            width: 90%;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 4em;
+            color: #FF00FF;
+            /* Bright pink */
+            text-shadow: 3px 3px #00FFFF;
+            /* Cyan shadow */
+        }
+
+        .nav {
+            position: absolute;
+            top: 200px;
+            right: 10px;
+            writing-mode: vertical-rl;
+            font-size: 0.8em;
+        }
+
+        .nav a {
+            color: #0000FF;
+            /* Blue links */
+            text-decoration: none;
+        }
+
+        .main-content {
+            margin-top: 50px;
+        }
+
+        .dog-of-the-day {
+            text-align: center;
+        }
+
+        .dog-of-the-day img {
+            border: 10px dashed #FF0000;
+            /* Red dashed border */
+            width: 250px;
+            height: 250px;
+        }
+
+        .dog-details {
+            font-size: 10px;
+            /* Very small font */
+            color: #E0E0E0;
+            /* Light grey text on yellow background */
+            text-align: left;
+        }
+
+        .services {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+        }
+
+        button {
+            background-color: #00FF00;
+            /* Bright green */
+            color: #000000;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .far-away-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Express</h1>
-    <p>Welcome to Express</p>
+    <div id="app">
+        <h1 class="header">Doggone Great!</h1>
+
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <button class="far-away-button" @click="showInfo">Learn About Our Walks</button>
+
+        <div class="main-content">
+            <div class="dog-of-the-day">
+                <h2>Dog of the Day!</h2>
+                <img :src="dogImage" />
+                <div class="dog-details">
+                    <p>This is Buddy! He's a 3-year-old Golden Retriever. He loves long walks on the beach and chasing
+                        squirrels. His favorite treat is peanut butter.</p>
+                </div>
+            </div>
+
+            <div class="services">
+                <h3>Our Services</h3>
+                <!-- Info is hidden by default -->
+                <p v-if="infoVisible" id="walk-info">We offer 30-minute and 60-minute walks. We also offer pet sitting
+                    services. All our walkers are certified and insured.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, onMounted } = Vue;
+
+        createApp({
+            setup() {
+                const dogImage = ref('');
+                const infoVisible = ref(false);
+
+                const fetchDog = async () => {
+                    try {
+                        const response = await fetch('https://dog.ceo/api/breeds/image/random');
+                        const data = await response.json();
+                        dogImage.value = data.message;
+                    } catch (error) {
+                        console.error('Error fetching dog image:', error);
+                        dogImage.value = 'https://placehold.co/250x250/ccc/ffffff?text=Dog+Image';
+                    }
+                };
+
+                const showInfo = () => {
+                    infoVisible.value = !infoVisible.value;
+                };
+
+                onMounted(() => {
+                    fetchDog();
+                });
+
+                return {
+                    dogImage,
+                    infoVisible,
+                    showInfo
+                };
+            }
+        }).mount('#app');
+    </script>
 </body>
+
 </html>
