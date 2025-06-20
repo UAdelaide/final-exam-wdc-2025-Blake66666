@@ -43,7 +43,7 @@
 
           fetch('/api/users/login', {
             method: 'POST',
-            body: JSON.stringify({email: username.value, password: password.value})
+            body: JSON.stringify({username: username.value, password: password.value})
           })
           .then((res) => res.json())
           .then((data) => {
