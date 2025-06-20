@@ -137,7 +137,11 @@
         }
 
         const loadDogs = () => {
-          fetch('/api/users')
+          fetch('/api/users/dogs')
+          .then((res) => res.json())
+          .then((data) => {
+            
+          })
         }
 
         onMounted(() => {
