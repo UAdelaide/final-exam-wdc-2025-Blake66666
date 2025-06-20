@@ -68,7 +68,7 @@ router.post('/logout', (req, res) => {
 
 router.get('/dogs', async (req, res) => {
   try {
-    const user = req.session.user;
+    const userId = req.session.user?.user_id;
     if (!user) {
       res.json({ dogs: [] });
     }
