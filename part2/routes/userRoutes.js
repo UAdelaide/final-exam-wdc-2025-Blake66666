@@ -66,13 +66,13 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.get('/dogs', (req, res) => {
+router.get('/dogs', async (req, res) => {
   try {
     const user = req.session.user;
     if (!user) {
       res.json({ dogs: [] });
     }
-    
+    const [rows] = await 
   }
 });
 
