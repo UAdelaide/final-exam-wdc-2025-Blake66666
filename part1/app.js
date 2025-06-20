@@ -67,17 +67,17 @@ let db;
       'open'
       ),
       (
-(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Lucy' AND u.username = 'emmaowner'),
-'2025-06-11 17:00:00',
-20,
-'Suburbia Streets',
-'completed'
-),
-(
-(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Charlie' AND u.username = 'carol123'),
-'2025-06-12 10:00:00',
-45,
-'Riverfront Path',
+      (SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Lucy' AND u.username = 'emmaowner'),
+      '2025-06-11 17:00:00',
+      20,
+      'Suburbia Streets',
+      'completed'
+      ),
+      (
+      (SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Charlie' AND u.username = 'carol123'),
+      '2025-06-12 10:00:00',
+      45,
+      'Riverfront Path',
       'cancelled'
       );
     `);
