@@ -46,16 +46,16 @@
           })
           .then((res) => res.json())
           .then((data) => {
-            // if (data.user) {
-            //   if (data.user?.role === 'owner') {
-            //     window.location = '/owner-dashboard.html';
-            //   }
-            //   if (data.user?.role === 'walker') {
-            //     window.location = '/walker-dashboard.html';
-            //   }
-            // } else {
-            //   alert("Login failed");
-            // }
+            if (data.user) {
+              if (data.user?.role === 'owner') {
+                window.location = '/owner-dashboard.html';
+              }
+              if (data.user?.role === 'walker') {
+                window.location = '/walker-dashboard.html';
+              }
+            } else {
+              alert("Login failed");
+            }
           })
           .catch((err) => {
             console.log(err);
@@ -69,6 +69,7 @@
       }
     }).mount('#app');
   </script>
+  <script src="./javascripts/page.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
