@@ -37,7 +37,12 @@
         };
       },
       setup() {
-        const 
+        const username = ref('');
+        const password = ref('');
+        return {
+          username,
+          password,
+        }
       }
     }).mount('#app');
   </script>
