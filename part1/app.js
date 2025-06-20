@@ -55,7 +55,42 @@ SET @rocky_id = (SELECT dog_id FROM Dogs WHERE name = 'Rocky' AND owner_id = @al
 SET @lucy_id = (SELECT dog_id FROM Dogs WHERE name = 'Lucy' AND owner_id = @emma_id);
 SET @charlie_id = (SELECT dog_id FROM Dogs WHERE name = 'Charlie' AND owner_id = @carol_id);
 
-
+INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
+(
+    @max_id,
+    '2025-06-10 08:00:00',
+    30,
+    'Parklands',
+    'open'
+),
+(
+    @bella_id,
+    '2025-06-10 09:30:00',
+    45,
+    'Beachside Ave',
+    'accepted'
+),
+(
+    @rocky_id,
+    '2025-06-11 14:00:00',
+    60,
+    'City Botanic Gardens',
+    'open'
+),
+(
+    @lucy_id,
+    '2025-06-11 17:00:00',
+    20,
+    'Suburbia Streets',
+    'completed'
+),
+(
+    @charlie_id,
+    '2025-06-12 10:00:00',
+    45,
+    'Riverfront Path',
+    'cancelled'
+);
     `);
 
   } catch (err) {
