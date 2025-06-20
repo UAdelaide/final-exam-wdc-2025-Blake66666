@@ -26,7 +26,6 @@ let db;
       host: 'localhost',
       user: 'root',
       database: 'DogWalkService',
-      password: '' // Set your MySQL root password
     });
 
     // Create the database if it doesn't exist
