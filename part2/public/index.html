@@ -42,6 +42,7 @@
         const loginAction = () => {
           fetch('/api/users/login', {
             method: 'POST',
+            body: JSON.stringify({})
           })
         }
         return {
