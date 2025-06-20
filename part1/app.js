@@ -33,63 +33,52 @@ let db;
     // Create a table if it doesn't exist
     await db.execute(`
       INSERT INTO Users (username, email, password_hash, role) VALUES
-      ('alice123', 'alice@example.com', 'hashed123', 'owner'),
-      ('bobwalker', 'bob@example.com', 'hashed456', 'walker'),
-      ('carol123', 'carol@example.com', 'hashed789', 'owner'),
-      ('davidwalker', 'david@example.com', 'hashedabc', 'walker'),
-      ('emmaowner', 'emma@example.com', 'hasheddef', 'owner');
-
-      SET @alice_id = (SELECT user_id FROM Users WHERE username = 'alice123');
-SET @carol_id = (SELECT user_id FROM Users WHERE username = 'carol123');
-SET @emma_id  = (SELECT user_id FROM Users WHERE username = 'emmaowner');
-      INSERT INTO Dogs (owner_id, name, size) VALUES
-(@alice_id, 'Max', 'medium'),
-(@carol_id, 'Bella', 'small'),
-(@alice_id, 'Rocky', 'large'),
-(@emma_id, 'Lucy', 'small'),
-(@carol_id, 'Charlie', 'medium');
-
-SET @max_id = (SELECT dog_id FROM Dogs WHERE name = 'Max' AND owner_id = @alice_id);
-SET @bella_id = (SELECT dog_id FROM Dogs WHERE name = 'Bella' AND owner_id = @carol_id);
-SET @rocky_id = (SELECT dog_id FROM Dogs WHERE name = 'Rocky' AND owner_id = @alice_id);
-SET @lucy_id = (SELECT dog_id FROM Dogs WHERE name = 'Lucy' AND owner_id = @emma_id);
-SET @charlie_id = (SELECT dog_id FROM Dogs WHERE name = 'Charlie' AND owner_id = @carol_id);
-
+('alice123', 'alice@example.com', 'hashed123', 'owner'),
+('bobwalker', 'bob@example.com', 'hashed456', 'walker'),
+('carol123', 'carol@example.com', 'hashed789', 'owner'),
+('davidwalker', 'david@example.com', 'hashedabc', 'walker'),
+('emmaowner', 'emma@example.com', 'hasheddef', 'owner');
+INSERT INTO Dogs (owner_id, name, size) VALUES
+((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
+((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small'),
+((SELECT user_id FROM Users WHERE username = 'alice123'), 'Rocky', 'large'),
+((SELECT user_id FROM Users WHERE username = 'emmaowner'), 'Lucy', 'small'),
+((SELECT user_id FROM Users WHERE username = 'carol123'), 'Charlie', 'medium');
 INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
 (
-    @max_id,
-    '2025-06-10 08:00:00',
-    30,
-    'Parklands',
-    'open'
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Max' AND u.username = 'alice123'),
+'2025-06-10 08:00:00',
+30,
+'Parklands',
+'open'
 ),
 (
-    @bella_id,
-    '2025-06-10 09:30:00',
-    45,
-    'Beachside Ave',
-    'accepted'
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Bella' AND u.username = 'carol123'),
+'2025-06-10 09:30:00',
+45,
+'Beachside Ave',
+'accepted'
 ),
 (
-    @rocky_id,
-    '2025-06-11 14:00:00',
-    60,
-    'City Botanic Gardens',
-    'open'
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Rocky' AND u.username = 'alice123'),
+'2025-06-11 14:00:00',
+60,
+'City Botanic Gardens',
+'open'
 ),
 (
-    @lucy_id,
-    '2025-06-11 17:00:00',
-    20,
-    'Suburbia Streets',
-    'completed'
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Lucy' AND u.username = 'emmaowner'),
+'2025-06-11 17:00:00',
+20,
+'Suburbia Streets',
+'completed'
 ),
 (
-    @charlie_id,
-    '2025-06-12 10:00:00',
-    45,
-    'Riverfront Path',
-    'cancelled'
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Charlie' AND u.username = 'carol123'),
+'2025-06-12 10:00:00',
+45,
+'Riverfront Path',
+'cancelled'
 );
     `);
 
