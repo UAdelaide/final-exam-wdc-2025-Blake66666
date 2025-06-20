@@ -6,7 +6,7 @@ var logger = require('morgan');
 var session = require('express-session');
 
 const app = express();
-const db = require('../models/db');
+const db = require('./models/db');
 
 app.use(session({
   secret: 'your-secret-key'
