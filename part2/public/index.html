@@ -40,7 +40,9 @@
         const username = ref('');
         const password = ref('');
         const loginAction = () => {
-          fetch('/')
+          fetch('/api/users/login', {
+            method: 'POST',
+          })
         }
         return {
           loginAction,
