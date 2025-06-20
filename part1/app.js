@@ -94,8 +94,13 @@ INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, st
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/api/dogs', (req, res) => {
-
+app.get('/api/dogs', async (req, res) => {
+  try {
+    const [books] = await db.execute('SELECT * FROM books');
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch books' });
+  }
 });
 
 app.use('/', indexRouter);
