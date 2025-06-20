@@ -48,12 +48,42 @@ INSERT INTO Dogs (owner_id, name, size) VALUES
 ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Charlie', 'medium');
     `);
     await db.execute(`
-INSERT INTO Dogs (owner_id, name, size) VALUES
-((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
-((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small'),
-((SELECT user_id FROM Users WHERE username = 'alice123'), 'Rocky', 'large'),
-((SELECT user_id FROM Users WHERE username = 'emmaowner'), 'Lucy', 'small'),
-((SELECT user_id FROM Users WHERE username = 'carol123'), 'Charlie', 'medium');
+INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
+(
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Max' AND u.username = 'alice123'),
+'2025-06-10 08:00:00',
+30,
+'Parklands',
+'open'
+),
+(
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Bella' AND u.username = 'carol123'),
+'2025-06-10 09:30:00',
+45,
+'Beachside Ave',
+'accepted'
+),
+(
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Rocky' AND u.username = 'alice123'),
+'2025-06-11 14:00:00',
+60,
+'City Botanic Gardens',
+'open'
+),
+(
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Lucy' AND u.username = 'emmaowner'),
+'2025-06-11 17:00:00',
+20,
+'Suburbia Streets',
+'completed'
+),
+(
+(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Charlie' AND u.username = 'carol123'),
+'2025-06-12 10:00:00',
+45,
+'Riverfront Path',
+'cancelled'
+);
     `);
 
   } catch (err) {
