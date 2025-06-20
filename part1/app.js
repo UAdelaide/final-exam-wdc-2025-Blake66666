@@ -87,7 +87,7 @@ INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, st
     `);
 
   } catch (err) {
-    console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
+    throw err
   }
 })();
 
