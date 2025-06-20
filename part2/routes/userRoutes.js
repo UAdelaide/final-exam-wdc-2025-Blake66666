@@ -68,7 +68,10 @@ router.post('/logout', (req, res) => {
 
 router.get('/dogs', (req, res) => {
   try {
-    const user = req.session
+    const user = req.session.user;
+    if (!user) {
+      res.
+    }
   }
 });
 
