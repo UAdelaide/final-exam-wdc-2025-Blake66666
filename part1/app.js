@@ -96,7 +96,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/dogs', async (req, res) => {
   try {
-    const [books] = await db.execute('SELECT name, FROM Dogs');
+    const [dogs] = await db.execute('SELECT name, size FROM Dogs');
     res.json(books);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch' });
