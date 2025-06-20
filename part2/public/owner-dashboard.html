@@ -123,7 +123,9 @@
         }
 
         const logout = () => {
-          fetch('/api/users/')
+          fetch('/api/users/logout', {
+            method: 'POST',
+          })
         }
 
         onMounted(() => {
