@@ -57,16 +57,16 @@ let db;
       '2025-06-10 09:30:00',
       45,
       'Beachside Ave',
-'accepted'
-),
-(
-(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Rocky' AND u.username = 'alice123'),
-'2025-06-11 14:00:00',
-60,
-'City Botanic Gardens',
-'open'
-),
-(
+      'accepted'
+      ),
+      (
+      (SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Rocky' AND u.username = 'alice123'),
+      '2025-06-11 14:00:00',
+      60,
+      'City Botanic Gardens',
+      'open'
+      ),
+      (
 (SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Lucy' AND u.username = 'emmaowner'),
 '2025-06-11 17:00:00',
 20,
@@ -78,8 +78,8 @@ let db;
 '2025-06-12 10:00:00',
 45,
 'Riverfront Path',
-'cancelled'
-);
+      'cancelled'
+      );
     `);
 
     // Insert data if table is empty
