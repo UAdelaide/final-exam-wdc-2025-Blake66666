@@ -82,6 +82,18 @@
           }
         }
 
+        const logout = () => {
+          fetch('/api/users/logout', {
+            method: 'POST',
+          })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.message) {
+              window.location = '/';
+            }
+          })
+        }
+
         onMounted(() => {
           loadWalkRequests();
         });
@@ -90,7 +102,8 @@
           walks,
           message,
           error,
-          applyToWalk
+          applyToWalk,
+          logout,
         };
       }
     }).mount('#app');
