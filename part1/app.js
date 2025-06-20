@@ -96,7 +96,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/dogs', async (req, res) => {
   try {
-    const [dogs] = await db.execute('SELECT name, size FROM Dogs');
+    const [dogs] = await db.execute(`
+    SELECT
+    d.name AS dog_name,
+    d.size,
+    u.username AS owner_username
+    FROM
+    Dogs d
+    JOIN
+    Users u ON d.owner_id = u.user_id
+    ORDER BY
+    u.username, d.name;
+
+      `);
     res.json(books);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch' });
