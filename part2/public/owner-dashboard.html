@@ -136,7 +136,9 @@
           })
         }
 
-        const loadDogs 
+        const loadDogs = () => {
+          fetch('/api/users')
+        }
 
         onMounted(() => {
           loadWalks();
