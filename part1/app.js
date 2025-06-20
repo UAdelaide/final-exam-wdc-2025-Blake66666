@@ -145,22 +145,24 @@ app.get('/api/walkers/summary', async (req, res) => {
   try {
     const [requests] = await db.execute(`
 SELECT
-    wr.request_id,
-    d.name AS dog_name,
-    wr.requested_time,
-    wr.duration_minutes,
-    wr.location,
-    u.username AS owner_username
+    u.username AS walker_username,
+    COUNT(DISTINCT wrt.rating_id) AS total_ratings,
+    AVG(wrt.rating) AS average_rating,
+    COUNT(DISTINCT CASE WHEN wr.status = 'completed' AND wa.status = 'accepted' THEN wr.request_id END) AS completed_walks
 FROM
-    WalkRequests wr
-JOIN
-    Dogs d ON wr.dog_id = d.dog_id
-JOIN
-    Users u ON d.owner_id = u.user_id
+    Users u
+LEFT JOIN
+    WalkApplications wa ON u.user_id = wa.walker_id
+LEFT JOIN
+    WalkRequests wr ON wa.request_id = wr.request_id
+LEFT JOIN
+    WalkRatings wrt ON u.user_id = wrt.walker_id
 WHERE
-    wr.status = 'open'
+    u.role = 'walker'
+GROUP BY
+    u.user_id, u.username
 ORDER BY
-    wr.requested_time;
+    u.username;
       `);
     res.json(requests);
   } catch (err) {
