@@ -86,7 +86,9 @@
             .then((res) => res.json())
             .then((data) => {
               dogs.value = data;
-              dogs.value.map((x) => {x.})
+              dogs.value.map((x) => {
+                x.photo
+              })
             });
         }
 
