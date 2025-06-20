@@ -94,6 +94,8 @@ INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, st
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get()
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
