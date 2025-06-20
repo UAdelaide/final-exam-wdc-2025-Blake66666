@@ -40,8 +40,7 @@
           <td>{{dog.size}}</td>
           <td>{{dog.owner_id}}</td>
           <td>
-            <img src="" />
-            {{dog.photo_url}}
+            <img :src="dog.photo_url" :alt="dog.photo_url" />
           </td>
         </tr>
       </tbody>
