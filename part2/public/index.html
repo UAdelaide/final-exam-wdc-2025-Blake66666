@@ -40,27 +40,27 @@
         const username = ref('');
         const password = ref('');
         const loginAction = () => {
-          console.log(username.value);
-          // fetch('/api/users/login', {
-          //   method: 'POST',
-          //   body: JSON.stringify({email: username, password})
-          // })
-          // .then((res) => res.json())
-          // .then((data) => {
-          //   if (data.user) {
-          //     if (data.user?.role === 'owner') {
-          //       window.location = '/owner-dashboard.html';
-          //     }
-          //     if (data.user?.role === 'walker') {
-          //       window.location = '/walker-dashboard.html';
-          //     }
-          //   } else {
-          //     alert("Login failed");
-          //   }
-          // })
-          // .catch((err) => {
-          //   console.log(err);
-          // })
+
+          fetch('/api/users/login', {
+            method: 'POST',
+            body: JSON.stringify({email: username.value, password: password.value})
+          })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.user) {
+              if (data.user?.role === 'owner') {
+                window.location = '/owner-dashboard.html';
+              }
+              if (data.user?.role === 'walker') {
+                window.location = '/walker-dashboard.html';
+              }
+            } else {
+              alert("Login failed");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          })
         }
         return {
           loginAction,
