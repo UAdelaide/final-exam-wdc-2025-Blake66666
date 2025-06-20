@@ -61,10 +61,14 @@
           })
         }
 
-        const dogs = ref()
+        const dogs = ref([]);
+
         const getAllDogs = () => {
           fetch('/api/dogs')
-            .then()
+            .then((res) => res.json())
+            .then((data) => {
+
+            })
         }
 
         onMounted(() => {
