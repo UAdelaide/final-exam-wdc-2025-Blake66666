@@ -38,7 +38,8 @@ INSERT INTO Users (username, email, password_hash, role) VALUES
 ('carol123', 'carol@example.com', 'hashed789', 'owner'),
 ('davidwalker', 'david@example.com', 'hashedabc', 'walker'),
 ('emmaowner', 'emma@example.com', 'hasheddef', 'owner');
-
+    `);
+    await db.execute(`
 
     `);
 
