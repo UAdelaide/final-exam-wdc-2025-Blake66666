@@ -65,7 +65,9 @@
           fetch('/api/dogs')
         }
 
-        onMounted()
+        onMounted(() => {
+          getAllDogs();
+        });
 
         return {
           message,
