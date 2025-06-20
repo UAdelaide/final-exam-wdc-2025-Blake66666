@@ -90,7 +90,7 @@
             .then((data) => {
               dogs.value = data;
               dogs.value.map(async (x) => {
-                set
+                setTimeout(() => {}, 1000)
                 let ph_res = await fetch('https://dog.ceo/api/breeds/image/random')
                 let photo_obj = await ph_res.json();
                 x.photo_url = photo_obj.message;
