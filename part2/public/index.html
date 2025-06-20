@@ -13,11 +13,11 @@
     <h1 class="mb-4 text-primary">{{ message }}</h1>
     <form class="mb-5">
       <div class="form-group">
-        <label for="username-inpu">Username</label>
+        <label for="username">Username</label>
         <input type="text" class="form-control" id="username" />
 
-        <label for="password-input">Password</label>
-        <input type="password" class="form-control" id="password-input" />
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" />
       </div>
       <button type="submit" class="btn btn-primary mt-3">Log In</button>
     </form>
@@ -38,7 +38,9 @@
       },
       setup() {
 
-        const loginAction
+        const loginAction = () => {
+          login();
+        }
         return {
           username,
           password,
