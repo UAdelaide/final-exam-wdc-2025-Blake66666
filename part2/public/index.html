@@ -87,7 +87,8 @@
             .then((data) => {
               dogs.value = data;
               dogs.value.map(async (x) => {
-                let 
+                let ph_res = await fetch('https://dog.ceo/api/breeds/image/random')
+                let photo
                 x.photo
               })
             });
