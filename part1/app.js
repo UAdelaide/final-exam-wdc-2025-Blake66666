@@ -87,7 +87,7 @@ INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, st
     `);
 
   } catch (err) {
-    console.log(err);
+    
   }
 })();
 
