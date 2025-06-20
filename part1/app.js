@@ -30,7 +30,7 @@ let db;
       database: 'DogWalkService'
     });
 
-    // Create a table if it doesn't exist
+    // Insert records into the database on startup to allow for testing.
     await db.execute(`
 INSERT INTO Users (username, email, password_hash, role) VALUES
 ('alice123', 'alice@example.com', 'hashed123', 'owner'),
