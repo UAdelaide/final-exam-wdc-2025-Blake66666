@@ -72,6 +72,7 @@ router.get('/dogs', async (req, res) => {
     if (!user) {
       res.json({ dogs: [] });
     }
+    const userId = user.user_id;
     const [rows] = await db.query();
   }
 });
