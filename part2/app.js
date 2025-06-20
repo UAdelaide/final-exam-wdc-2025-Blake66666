@@ -14,7 +14,8 @@ const app = express();
 // Middleware
 app.use(logger('dev'));
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
