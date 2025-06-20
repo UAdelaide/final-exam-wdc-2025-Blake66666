@@ -31,12 +31,9 @@
   <script>
     const { createApp, ref } = Vue;
     createApp({
-      data() {
-        return {
-          message: 'Welcome to the Dog Walking Service!',
-        };
-      },
+    
       setup() {
+        const message = ref('Welcome to the Dog Walking Service!');
         const username = ref('');
         const password = ref('');
         const loginAction = () => {
