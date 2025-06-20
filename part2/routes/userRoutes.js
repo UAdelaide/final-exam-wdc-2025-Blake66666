@@ -71,7 +71,9 @@ router.get('/dogs', async (req, res) => {
     const user = req.session.user;
     if (!user) {
       res.json({ dogs: [] });
-      res.end();
+
+    } else {
+      
     }
     console.log(user);
     const userId = user.user_id;
