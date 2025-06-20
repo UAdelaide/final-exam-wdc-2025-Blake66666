@@ -23,7 +23,7 @@
 
 
     <h1>All Registered Dogs</h1>
-    
+
   </div>
 
   <script>
@@ -60,6 +60,12 @@
             console.log(err);
           })
         }
+
+        const getAllDogs = () => {
+          fetch('/api/dogs')
+        }
+
+        
 
         return {
           message,
