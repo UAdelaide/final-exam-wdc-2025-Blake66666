@@ -72,7 +72,7 @@ router.get('/dogs', async (req, res) => {
     if (!user) {
       res.json({ dogs: [] });
     }
-    const [rows] = await 
+    const [rows] = await db.query();
   }
 });
 
