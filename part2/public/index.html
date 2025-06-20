@@ -31,7 +31,7 @@
   <script>
     const { createApp, ref } = Vue;
     createApp({
-    
+
       setup() {
         const message = ref('Welcome to the Dog Walking Service!');
         const username = ref('');
@@ -59,7 +59,9 @@
             console.log(err);
           })
         }
+
         return {
+          message,
           loginAction,
           username,
           password,
