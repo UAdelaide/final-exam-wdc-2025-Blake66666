@@ -25,6 +25,7 @@ let db;
     const connection = await mysql.createConnection({
       host: 'localhost',
       user: 'root',
+      database: 'DogWalkService',
       password: '' // Set your MySQL root password
     });
 
