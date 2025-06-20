@@ -37,7 +37,7 @@
         const username = ref('');
         const password = ref('');
         const loginAction = () => {
-          alert(username.value)
+
           fetch('/api/users/login', {
             method: 'POST',
             body: JSON.stringify({username: username.value, password: password.value})
