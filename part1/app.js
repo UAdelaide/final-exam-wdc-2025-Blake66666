@@ -52,11 +52,11 @@ let db;
       'Parklands',
       'open'
       ),
-(
-(SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Bella' AND u.username = 'carol123'),
-'2025-06-10 09:30:00',
-45,
-'Beachside Ave',
+      (
+      (SELECT dog_id FROM Dogs AS d JOIN Users AS u ON d.owner_id = u.user_id WHERE d.name = 'Bella' AND u.username = 'carol123'),
+      '2025-06-10 09:30:00',
+      45,
+      'Beachside Ave',
 'accepted'
 ),
 (
