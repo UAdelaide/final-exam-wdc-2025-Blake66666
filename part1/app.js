@@ -114,6 +114,10 @@ app.get('/api/dogs', async (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
