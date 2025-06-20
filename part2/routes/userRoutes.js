@@ -70,8 +70,9 @@ router.get('/dogs', (req, res) => {
   try {
     const user = req.session.user;
     if (!user) {
-      res.
+      res.json({ dogs: [] });
     }
+    
   }
 });
 
