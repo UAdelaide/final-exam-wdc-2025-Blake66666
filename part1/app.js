@@ -114,19 +114,26 @@ app.get('/api/dogs', async (req, res) => {
   }
 });
 
-app.get('/api/walkrequests/open', (req, res) => {
+app.get('/api/walkrequests/open', async (req, res) => {
   try {
     const [requests] = await db.execute(`
-    SELECT
+SELECT
+    wr.request_id,
     d.name AS dog_name,
-    d.size,
+    wr.requested_time,
+    wr.duration_minutes,
+    wr.location,
     u.username AS owner_username
-    FROM
-    Dogs d
-    JOIN
+FROM
+    WalkRequests wr
+JOIN
+    Dogs d ON wr.dog_id = d.dog_id
+JOIN
     Users u ON d.owner_id = u.user_id
-    ORDER BY
-    u.username, d.name;
+WHERE
+    wr.status = 'open'
+ORDER BY
+    wr.requested_time;
       `);
     res.json(requests);
   } catch (err) {
