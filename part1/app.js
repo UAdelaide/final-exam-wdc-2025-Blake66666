@@ -107,9 +107,8 @@ app.get('/api/dogs', async (req, res) => {
     Users u ON d.owner_id = u.user_id
     ORDER BY
     u.username, d.name;
-
       `);
-    res.json(books);
+    res.json(dogs);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch' });
   }
