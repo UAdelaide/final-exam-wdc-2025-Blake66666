@@ -40,9 +40,14 @@ INSERT INTO Users (username, email, password_hash, role) VALUES
 ('emmaowner', 'emma@example.com', 'hasheddef', 'owner');
     `);
     await db.execute(`
-('carol123', 'carol@example.com', 'hashed789', 'owner'),
-('davidwalker', 'david@example.com', 'hashedabc', 'walker'),
-('emmaowner', 'emma@example.com', 'hasheddef', 'owner');
+INSERT INTO Dogs (owner_id, name, size) VALUES
+((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
+((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small'),
+((SELECT user_id FROM Users WHERE username = 'alice123'), 'Rocky', 'large'),
+((SELECT user_id FROM Users WHERE username = 'emmaowner'), 'Lucy', 'small'),
+((SELECT user_id FROM Users WHERE username = 'carol123'), 'Charlie', 'medium');
+    `);
+    await db.execute(`
 INSERT INTO Dogs (owner_id, name, size) VALUES
 ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
 ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small'),
