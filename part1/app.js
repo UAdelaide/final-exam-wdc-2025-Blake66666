@@ -141,6 +141,10 @@ ORDER BY
   }
 });
 
+app.get('/api/walkers/summary', async (req, res) => {
+  
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
